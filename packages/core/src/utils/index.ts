@@ -23,4 +23,5 @@ export * from './pipeHandler';
 export * from './pipeOnChange';
 export * from './pipeRenderElement';
 export * from './pipeRenderLeaf';
+export * from './sanitizeUrl';
 export * from './withPlate';
