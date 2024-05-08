@@ -2,6 +2,7 @@ import { insertNodes, isCollapsed, unwrapNodes } from '@udecode/plate-common';
 import { getPlatePluginType, SPEditor, TElement } from '@udecode/plate-core';
 import { Editor, Transforms } from 'slate';
 import { ELEMENT_LINK } from '../defaults';
+import { validateUrl } from '../utils';
 import { wrapLink } from './wrapLink';
 
 /**
@@ -14,15 +15,22 @@ export const upsertLinkAtSelection = (
   {
     url,
     wrap,
+    skipValidation = false,
   }: {
     url: string;
     /**
      * If true, wrap the link at the location (default: selection) even if the selection is collapsed.
      */
     wrap?: boolean;
+    /**
+     * If true, skips URL validation
+     */
+    skipValidation?: boolean;
   }
 ) => {
   if (!editor.selection) return;
+
+  if (!skipValidation && !validateUrl(editor, url)) return;
 
   const type = getPlatePluginType(editor, ELEMENT_LINK);
 
