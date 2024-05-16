@@ -11,7 +11,11 @@ import { withLink } from './withLink';
 /**
  * Enables support for hyperlinks.
  */
-export const createLinkPlugin = (options?: WithLinkOptions): PlatePlugin => ({
+export const createLinkPlugin = (
+  options: WithLinkOptions = {
+    allowedSchemes: ['http', 'https', 'mailto', 'tel'],
+  }
+): PlatePlugin => ({
   pluginKeys: ELEMENT_LINK,
   renderElement: getRenderElement(ELEMENT_LINK),
   deserialize: getLinkDeserialize(),

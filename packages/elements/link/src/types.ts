@@ -14,4 +14,9 @@ export interface WithLinkOptions {
    * Callback to validate an url.
    */
   isUrl?: (text: string) => boolean;
+  /**
+   * List of allowed URL schemes.
+   * @default ['http', 'https', 'mailto', 'tel']
+   */
+  allowedSchemes?: string[];
 }
